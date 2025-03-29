@@ -14,7 +14,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/playlist-maker").authenticated()
+                        .requestMatchers("/playlist-maker","/playlist-history").authenticated()
                         .requestMatchers("/login", "/register", "/index.html", "/css/**", "/js/**", "/images/**").permitAll()
                         .anyRequest().authenticated()
                 )
@@ -29,7 +29,7 @@ public class SecurityConfig {
                         .permitAll()
                 )
                 .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/login", "/logout","/register","/playlist-maker")
+                        .ignoringRequestMatchers("/login", "/logout","/register","/playlist-maker","/playlist-maker/save","/playlist-history")
                 );
 
         return http.build();

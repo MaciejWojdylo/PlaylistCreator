@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="pl" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify Playlist Maker</title>
+    <title>Playlist History</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -68,14 +68,44 @@
             margin: 20px;
             text-align: center;
         }
+        .playlist-item {
+            background-color: #121212;
+            margin: 15px auto;
+            padding: 20px;
+            width: 80%;
+            border-radius: 10px;
+            border: 1px solid #1DB954;
+        }
+        .playlist-item h3 {
+            color: #1DB954;
+            margin-bottom: 10px;
+        }
+        .playlist-item p {
+            font-size: 1.2em;
+        }
         .username {
             font-weight: bold;
+            color: #1DB954;
+        }
+        .back-button {
+            margin-top: 30px;
+            display: inline-block;
+            text-decoration: none;
+            background-color: #1DB954;
+            color: #000000;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1.2em;
+        }
+        .back-button:hover {
+            background-color: #000000;
             color: #1DB954;
         }
     </style>
 </head>
 <body>
-<h1>Spotify Playlist Maker</h1>
+<h1>Playlist History</h1>
+
 <div class="green-bar">
     <div class="logo-container">
         <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify Logo" class="logo">
@@ -85,13 +115,28 @@
         <a href="/history" class="button">History</a>
     </div>
 </div>
+
 <div class="content">
-    <h2>Welcome to Spotify Playlist Maker!</h2>
-    <p>You are logged in as: <span class="username" sec:authentication="name"></span></p>
-    <p>Start creating your playlist or check the history of your tracks!</p>
-    <form action="/logout" method="POST">
-        <button class="button" style="margin-top: 20px;">Log out</button>
-    </form>
+    <h2>Your Playlist History</h2>
+
+    <div th:if="${playlists}">
+        <th:block th:each="playlist : ${playlists}">
+            <div class="playlist-item">
+                <h3>Date: <span th:text="${playlist.timestamp}"></span></h3>
+
+                <div th:each="song : ${playlist.songs}">
+                    <p><strong>Title:</strong> <span th:text="${song.title}"></span></p>
+                    <p><strong>Artist:</strong> <span th:text="${song.artist}"></span></p>
+                </div>
+            </div>
+        </th:block>
+    </div>
+
+    <div th:if="${playlists.isEmpty()}">
+        <p>No history to display.</p>
+    </div>
+
+    <a href="/index" class="back-button">Back to Home</a>
 </div>
 </body>
 </html>

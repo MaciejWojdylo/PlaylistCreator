@@ -28,7 +28,7 @@ public class User {
     private String role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PlaylistHistory> playlists;
+    private List<PlaylistHistory> playlistHistories;
 
 }
 

@@ -11,12 +11,14 @@ import java.util.List;
 @Getter
 @Entity
 public class PlaylistHistory {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ElementCollection
-    private List<String> words;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "playlist_history_id")
+    private List<Song> songs;
 
     private LocalDateTime timestamp;
 

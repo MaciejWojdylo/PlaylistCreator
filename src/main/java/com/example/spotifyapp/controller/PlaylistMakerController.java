@@ -1,6 +1,7 @@
 package com.example.spotifyapp.controller;
 
 
+import com.example.spotifyapp.model.Song;
 import com.example.spotifyapp.service.PlaylistHistoryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class PlaylistMakerController {
@@ -30,7 +32,13 @@ public class PlaylistMakerController {
             @AuthenticationPrincipal UserDetails userDetails) {
 
         String username = userDetails.getUsername();
-        playlistHistoryService.savePlaylistForUser(username, playlistWords);
+
+        List<Song> songs = playlistWords.stream()
+                .map(word -> new Song(word, "Unknown Artist", "Unknown Album"))
+                .collect(Collectors.toList());
+
+        playlistHistoryService.savePlaylistForUser(username, songs);
+
         return ResponseEntity.ok("Playlista została zapisana!");
     }
 
@@ -49,5 +57,3 @@ public class PlaylistMakerController {
         return "playlist-maker";
     }
 }
-
-
