@@ -36,7 +36,7 @@ Spotify Playlist Maker to aplikacja internetowa, która umożliwia użytkownikom
 
 The project was developed using:
 Projekt został stworzony przy użyciu:
-- **Java 17**
+- **Java 21**
 - **Spring Boot**:
   - Spring Web
   - Spring Data JPA
