@@ -4,7 +4,7 @@ Spotify Playlist Maker is a web application that allows users to create, edit, a
 
 ---
 
-## Features / Funkcjonalności
+## Features
 
 ### 1. Playlist Creation
 - Users can input any text, and each word forms an individual card in the playlist.
@@ -50,7 +50,7 @@ Contains HTML templates rendered dynamically by Thymeleaf:
 
 ## Installation and Running
 
-### 1. Environment Setup / Skonfiguruj środowisko
+### 1. Environment Setup
 - Install Java 21
 - Install Maven
 
