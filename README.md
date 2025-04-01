@@ -30,21 +30,7 @@ The project was developed using:
   - Spring Web
   - Spring Data JPA
   - Spring Security
-- **Thymeleaf** for dynamic view rendering
 - **PostgreSQLE** (database).
-- **HTML, CSS, JavaScript** frontend
-
----
-
-## Project Structure
-
-### 1. `templates` Folder 
-Contains HTML templates rendered dynamically by Thymeleaf:
-- `index.html`: Homepage
-- `playlist-maker.html`: Playlist creation page 
-- `login.html`: Login page
-- `register.html`: Registration
-- `history.html`: User History
 
 ---
 
